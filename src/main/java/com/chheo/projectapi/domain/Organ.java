@@ -13,8 +13,10 @@ import javax.persistence.OneToMany;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Entity
 public class Organ {
 	private static final long serialVersionUID = 1L;
@@ -31,11 +33,4 @@ public class Organ {
 	
 	@OneToMany(mappedBy = "organ", cascade = CascadeType.ALL)
 	private List<SupportInfo> supportInfoList = new ArrayList<>();
-	
-	protected Organ() {}
-	
-	public Organ(String region, String regionCode) { 
-		this.region = region;
-		this.regionCode = regionCode; 
-	}
 }

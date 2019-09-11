@@ -1,7 +1,9 @@
 package com.chheo.projectapi.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,12 +11,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Entity
 public class SupportInfo extends TimeEntity {
-	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -46,23 +48,7 @@ public class SupportInfo extends TimeEntity {
 	@Column(length = 50, nullable = false)
 	private String reception;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "region_code")
 	private Organ organ;
-	
-	protected SupportInfo() {}
-	
-	public SupportInfo(String target, String usage, String limited, long limitValue, String rate, double averageRate, 
-			String institute, String mgmt, String reception, Organ organ) {
-		this.target = target;
-		this.usage = usage;
-		this.limited = limited;
-		this.limitValue = limitValue;
-		this.rate = rate;
-		this.averageRate = averageRate;
-		this.institute = institute;
-		this.mgmt = mgmt;
-		this.reception = reception;
-		this.organ = organ;
-	} 
 }
