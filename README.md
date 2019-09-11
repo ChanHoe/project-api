@@ -1,4 +1,4 @@
-# project-api
+# project-api [지자체 협약 지원 API]
 
 **개발 프레임워크 및 빌드/실행**
 
